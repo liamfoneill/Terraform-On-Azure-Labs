@@ -1,7 +1,3 @@
-provider "azurerm" {
-  version = "=1.30.1"
-}
-
 resource "azurerm_resource_group" "lab_2" {
   name      = "${var.rg_name}"
   location  = "${var.location}"

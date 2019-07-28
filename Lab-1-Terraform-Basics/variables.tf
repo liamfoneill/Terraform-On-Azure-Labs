@@ -1,5 +1,5 @@
-variable "rg_name" {
-    default = "terraform-lab-02-variables"
+variable "resource_group_name" {
+    default = "terraform-lab-01-basics"
 }
 
 variable "location" {

@@ -1,22 +1,23 @@
-provider "azurerm" {
-  version = "=1.30.1"
+resource "azurerm_resource_group" "lab_1" {
+  name     = "${var.resource_group_name}"
+  location = "${var.location}"
+  tags = "${var.tags}"
 }
 
-resource "azurerm_resource_group" "lab_1" {
-  name     = "terraform-lab1"
-  location = "West Europe"
-
-  tags = {
-    Environment = "Training"
-    "Team Name" = "Next PLC"
-  }
+resource "random_string" "rnd" {
+  length  = 8
+  lower   = false
+  number  = true
+  upper   = false
+  special = false
 }
 
 resource "azurerm_storage_account" "lab_1_sa" {
-  name                     = "lioneillterraformlab1"
+  name                     = "lioneill${random_string.rnd.result}"
   resource_group_name      = "${azurerm_resource_group.lab_1.name}"
   location                 = "${azurerm_resource_group.lab_1.location}"
   account_tier             = "Standard"
   account_replication_type = "LRS"
   account_kind             = "StorageV2"
+  tags = "${var.tags}"
 }
