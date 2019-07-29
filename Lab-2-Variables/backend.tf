@@ -1,8 +1,8 @@
 terraform {
   backend "azurerm" {
-    resource_group_name   = "terraform-state-store-west-europe-production-rg"
-    storage_account_name  = "tfstatestorewesteurope"
+    resource_group_name   = "Terraform-State-Storage-North-Europe"
+    storage_account_name  = "tfstatestorenortheurope"
     container_name        = "terraformstate"
-    key                   = "lab-2-terraform-variables.tfstate"
+    key                   = "lab-1-terraform-basics.tfstate"
   }
 }

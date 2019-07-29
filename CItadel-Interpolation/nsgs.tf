@@ -1,21 +1,66 @@
 resource "azurerm_network_security_group" "resource_group_default" {
-   name = "MyNetworkSecurityGroup"
+   name = "ResourceGroupDefault"
    resource_group_name  = "${azurerm_resource_group.core.name}"
    location             = "${azurerm_resource_group.core.location}"
    tags                 = "${azurerm_resource_group.core.tags}"
 }
 
-resource "azurerm_network_security_rule" "AllowRules" {
-    count = "${length(var.nsg_rule_names)}"
-    name = "Allow${var.nsg_rule_names[count.index]}"
+resource "azurerm_network_security_rule" "AllowSSH" {
+    name = "AllowSSH"
     resource_group_name         = "${azurerm_resource_group.core.name}"
     network_security_group_name = "${azurerm_network_security_group.resource_group_default.name}"
 
-    priority                    = "10${count.index+1}0"
+    priority                    = 1010
     access                      = "Allow"
     direction                   = "Inbound"
     protocol                    = "Tcp"
-    destination_port_range      = "${lookup(var.nsg_rules, var.nsg_rule_names[count.index], "")}"
+    destination_port_range      = 22
+    destination_address_prefix  = "*"
+    source_port_range           = "*"
+    source_address_prefix       = "*"
+}
+
+resource "azurerm_network_security_rule" "AllowHTTP" {
+    name = "AllowHTTP"
+    resource_group_name         = "${azurerm_resource_group.core.name}"
+    network_security_group_name = "${azurerm_network_security_group.resource_group_default.name}"
+
+    priority                    = 1020
+    access                      = "Allow"
+    direction                   = "Inbound"
+    protocol                    = "Tcp"
+    destination_port_range      = 80
+    destination_address_prefix  = "*"
+    source_port_range           = "*"
+    source_address_prefix       = "*"
+}
+
+
+resource "azurerm_network_security_rule" "AllowHTTPS" {
+    name = "AllowHTTPS"
+    resource_group_name         = "${azurerm_resource_group.core.name}"
+    network_security_group_name = "${azurerm_network_security_group.resource_group_default.name}"
+
+    priority                    = 1021
+    access                      = "Allow"
+    direction                   = "Inbound"
+    protocol                    = "Tcp"
+    destination_port_range      = 443
+    destination_address_prefix  = "*"
+    source_port_range           = "*"
+    source_address_prefix       = "*"
+}
+
+resource "azurerm_network_security_rule" "AllowSQLServer" {
+    name = "AllowSQLServer"
+    resource_group_name         = "${azurerm_resource_group.core.name}"
+    network_security_group_name = "${azurerm_network_security_group.resource_group_default.name}"
+
+    priority                    = 1030
+    access                      = "Allow"
+    direction                   = "Inbound"
+    protocol                    = "Tcp"
+    destination_port_range      = 1443
     destination_address_prefix  = "*"
     source_port_range           = "*"
     source_address_prefix       = "*"

@@ -3,7 +3,7 @@ variable "rg_name" {
 }
 variable "loc" {
     description = "Default Azure region"
-    default     =   "West Europe"
+    default     = "West Europe"
 }
 
 variable "tags" {

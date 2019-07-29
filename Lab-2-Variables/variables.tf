@@ -3,7 +3,7 @@ variable "rg_name" {
 }
 
 variable "location" {
-    default = "West Europe"
+    description = "Please type in West Europe"
 }
 
 variable "tags" {
