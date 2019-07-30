@@ -3,6 +3,6 @@ terraform {
     resource_group_name   = "Terraform-State-Storage-North-Europe"
     storage_account_name  = "tfstatestorenortheurope"
     container_name        = "terraformstate"
-    key                   = "lab-1-terraform-basics.tfstate"
+    key                   = "lab-2-variables.tfstate"
   }
 }
