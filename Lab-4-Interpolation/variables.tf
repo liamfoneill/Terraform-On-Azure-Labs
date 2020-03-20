@@ -8,18 +8,18 @@ variable "loc" {
 
 variable "subnets" {
     description = "A list of subnets for the Core Environment VNET"
-    type = "list"
+    type = list(string)
     default = ["GatewaySubnet", "training", "dev"]
 }
 
 variable "nsg_rule_names" {
-  type = "list"
+  type = list(string)
   default = ["http", "https", "ssh", "rdp", "sqlserver"]
 }
 
 variable "nsg_rules" {
   description = "A Map of NSG Rules and their Port Numbers"
-  type = "map"
+  type = map(string)
   default = {
       http = 80
       https = 443
@@ -31,7 +31,7 @@ variable "nsg_rules" {
 
 
 variable "tags" {
-    type = "map"
+    type = map(string)
     default = {
         Environment = "Training"
         "Team Name" = "Next"

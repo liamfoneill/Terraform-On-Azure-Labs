@@ -1,4 +1,5 @@
-module "core-environment" {
-  source = "git@github.com:liamfoneill/Core-Environment-Module?ref=master"
-  rg_name = "terraform-lab-05-modularisation"
+module "terraform-module" {
+  source = "github.com/liamfoneill/Terraform-Module?ref=master"
+  name = "terraform-lab-05-modularisation"
+  location = "West Europe"
 }

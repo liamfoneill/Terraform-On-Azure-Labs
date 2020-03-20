@@ -7,7 +7,7 @@ variable "loc" {
 }
 
 variable "tags" {
-    type = "map"
+    type = map(string)
     default = {
         Environment = "Training"
         "Team Name" = "Next"
